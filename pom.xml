@@ -26,12 +26,10 @@
 		</dependency>
 		
 		<dependency>
-		    <groupId>commons-lang</groupId>
-		    <artifactId>commons-lang</artifactId>
-		    <version>2.5</version>
-		    <scope>system</scope>
-		    <systemPath>${project.basedir}/lib/commons-lang-2.5.jar</systemPath>
-		</dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.5</version>
+        </dependency>
 		
 		<dependency>
 		    <groupId>mybatis-generator-local</groupId>
@@ -54,6 +52,32 @@
 					<wtpversion>2.0</wtpversion>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+	                <webResources>
+	                    <resource>
+	                        <directory>${project.basedir}/lib/</directory>
+	                        <targetPath>WEB-INF/lib</targetPath>
+	                        <filtering>true</filtering>
+	                        <includes>
+	                            <include>mybatis-generator-local-1.3.3.jar</include>
+	                        </includes>
+	                    </resource>
+	                </webResources>
+            	</configuration>
+			</plugin>
+			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <encoding>utf8</encoding>
+                </configuration>
+            </plugin>
 		</plugins>
 	</build>
 </project>
