@@ -51,7 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
 	<div class="container login-form">
 		<form class="form-horizontal" role="form" id="form">
-
+		
 			<div class="form-group">
 				<label for="connection" class="col-lg-2 control-label">数据库连接</label>
 				<div class="col-lg-10">
@@ -62,7 +62,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="form-group">
 				<label for="port" class="col-lg-2 control-label">端口号</label>
 				<div class="col-xs-4">
-					<input type="text" placeholder="3306" id="port" name="port" class="form-control" required/>
+					<input type="text" placeholder="3306" value="3306" id="port" name="port" class="form-control" required/>
 				</div>
 				<label for="dataBase" class="col-lg-2 control-label">数据库</label>
 				<div class="col-xs-4">
@@ -114,11 +114,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="form-group">
 				<label for="tableNames" class="col-lg-2 control-label">表名</label>
 				<div class="col-xs-3">
-					<input type="text" id="tableNames" name="tableNames" class="form-control" required/>
+					<input type="text" id="tableNames" name="tableNames" class="form-control" placeholder="table_name" required/>
 				</div>
 				<label for="modelNames" class="col-lg-2 control-label">模型名</label>
 				<div class="col-xs-3">
-					<input type="text" id="modelNames" name="modelNames" class="form-control" required/>
+					<input type="text" id="modelNames" name="modelNames" class="form-control" placeholder="TableName" required/>
 				</div>
 				<a class="btn btn-success btn-xs" onclick="addItem()" title="增加">
 					<span class="fui-check">&nbsp;增加</span>
@@ -129,7 +129,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		<div class="form-group">
 			<div class="col-md-12" style="text-align: center;">
-	          <a id="submitBtn" href="javascript:void(0);" onclick="doSum();" style="width: 200px;" class="btn btn-lg btn-primary "><span class="fui-check-circle"></span>&nbsp;生成并下载</a>
+	        	<a id="submitBtn" href="javascript:void(0);" onclick="doSubmit();" style="width: 200px;" class="btn btn-lg btn-primary "><span class="fui-check-circle"></span>&nbsp;生成并下载</a>
 	        </div>
 		</div>
 	
@@ -142,65 +142,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script src="js/flat-ui.min.js"></script>
 	<script src="js/jquery.form.js"></script>
 	<script src="js/jquery.validate.min.js"></script>
+	<script src="js/index.js"></script>
 	<script>
 		var basePath = '<%=path%>';
-		$(function() {
-			$("#form").validate();// 加载配置
-		});
-		function addItem(){
-			var item = "";
-			item += "<div class='form-group'>"
-	     		+"<label class='col-lg-2 control-label'>表名</label>"
-	     		+"<div class='col-xs-3'><input type='text' name='tableNames' class='form-control' /></div>"
-	     		+"<label class='col-lg-2 control-label'>模型名</label>"
-	     		+"<div class='col-xs-3'><input type='text' name='modelNames' class='form-control' /></div>"
-	     		+"<a class='btn btn-success btn-xs' onclick='addItem()' title='增加'><span class='fui-check'>&nbsp;增加</span></a>&nbsp;"
-	     		+"<a class='btn btn-danger btn-xs' onclick='redItem(this)' title='删除'><span class='fui-cross'>&nbsp;删除</span></a>"
-	     		+"</div>";
-			$("#form").append(item);
-		}
-		
-		function redItem(para){
-			$(para).parent().remove();
-		}
-		
-		function doSum(){
-			if($("#form").valid(this,'填写信息不完整。') == false){
-				return;
-			}
-			if (typeof($("#submitBtn")) != "undefined") { 
-				$("#submitBtn").attr("disabled", "disabled");
-			}
-			var url =  basePath +'/generatorServlet.do?' + Math.random();
-			$.ajax({
-				type : 'post',
-				url : url,
-				dataType : 'text',
-				data : $("#form").serialize(),
-				success : function (data, textStatus) {
-					$("#submitBtn").removeAttr("disabled");
-					data = JSON.parse(data);
-					if(data.rspCode == "000001"){
-						alert("数据库连接失败，请检查您的数据库地址和数据库名");
-					}else if(data.rspCode == "000002"){
-						alert("数据库连接错误");
-					}else if(data.rspCode == "000003"){
-						alert("数据库连接错误");
-					}else if(data.rspCode == "000004"){
-						alert("发生错误，请检查您的用户名或密码");
-					}else if(data.rspCode == "000005"){
-						alert("操作失败");
-					}else{
-						//alert("操作成功");
-						window.open(basePath + "/tmp" +data.zipName);
-					}
-			    },
-				error: function(data, textStatus){
-					alert('操作失败');
-					$("#submitBtn").removeAttr("disabled");
-				}
-			});
-		}
 	</script>
 </body>
 </html>
