@@ -60,7 +60,6 @@
 	                    <resource>
 	                        <directory>${project.basedir}/lib/</directory>
 	                        <targetPath>WEB-INF/lib</targetPath>
-	                        <filtering>true</filtering>
 	                        <includes>
 	                            <include>mybatis-generator-local-1.3.3.jar</include>
 	                        </includes>
