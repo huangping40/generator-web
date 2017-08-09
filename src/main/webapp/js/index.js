@@ -62,6 +62,7 @@ function doSubmit(){
 				//alert("操作成功");
 				doStorageCookies();//存储到cookie
 				$("#submitBtn2").attr("href", "/tmp" +data.zipName);
+				alert("文件生成成功，请点击下载,10分钟后文件自动删除");
 			}
 	    },
 		error: function(data, textStatus){

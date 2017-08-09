@@ -119,7 +119,7 @@ public class GeneratorServlet extends HttpServlet {
                 @Override
                 public void run() {
                     try {
-                        Thread.sleep(60000);
+                        Thread.sleep(600000);
                         File dirFile = new File(path + srcPath);
                         File zipFile = new File(path + "/tmp" + "/" + srcPath + ".zip");
                         deleteDir(dirFile);
