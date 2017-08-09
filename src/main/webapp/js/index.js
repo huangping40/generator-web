@@ -46,7 +46,7 @@ function doSubmit(){
 		dataType : 'text',
 		data : $("#form").serialize(),
 		success : function (data, textStatus) {
-			$("#submitBtn").removeAttr("disabled");
+            $("#submitBtn").removeAttr("disabled");
 			data = JSON.parse(data);
 			if(data.rspCode == "000001"){
 				alert("数据库连接失败，请检查您的数据库地址和数据库名");
@@ -61,7 +61,7 @@ function doSubmit(){
 			}else{
 				//alert("操作成功");
 				doStorageCookies();//存储到cookie
-				window.open(basePath + "/tmp" +data.zipName);
+				$("#submitBtn2").attr("href", "/tmp" +data.zipName);
 			}
 	    },
 		error: function(data, textStatus){

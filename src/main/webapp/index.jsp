@@ -129,7 +129,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		<div class="form-group">
 			<div class="col-md-12" style="text-align: center;">
-	        	<a id="submitBtn" href="javascript:void(0);" onclick="doSubmit();" style="width: 200px;" class="btn btn-lg btn-primary "><span class="fui-check-circle"></span>&nbsp;生成并下载</a>
+				<a id="submitBtn" href="javascript:void(0);" onclick="doSubmit();" style="width: 200px;" class="btn btn-lg btn-primary "><span class="fui-check-circle"></span>&nbsp;生成</a>
+				<a id="submitBtn2" target="_blank"  >下载</a>
 	        </div>
 		</div>
 	
@@ -142,7 +143,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script src="js/flat-ui.min.js"></script>
 	<script src="js/jquery.form.js"></script>
 	<script src="js/jquery.validate.min.js"></script>
-	<script src="js/index.js"></script>
+	<script src="js/index.js?t=4"></script>
 	<script>
 		var basePath = '<%=path%>';
 	</script>
